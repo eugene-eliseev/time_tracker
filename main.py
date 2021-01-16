@@ -36,9 +36,9 @@ class Tracker(Thread):
                 d = get_active_window_title()
                 res = [d['name'], d['process']['name'], d['process']['cmdline']]
                 if self.last_res != res:
-                    log(self.last_res, time.time(), False)
+                    log(self.last_res, time_start, False)
                     self.last_res = res
-                    log(res, time.time(), True)
+                    log(res, time_start, True)
             except Exception as e:
                 print(e)
             if self.is_active and time.time() - self.last_active > 600:
@@ -113,4 +113,3 @@ if __name__ == "__main__":
     TRACKER.setDaemon(True)
     TRACKER.start()
     TRACKER.join()
-    # TODO web panel

@@ -1,0 +1,45 @@
+[
+  {
+    "process": "plasmashell",
+    "title": null,
+    "priority": 1,
+    "object": "n"
+  },
+  {
+    "process": "(dolphin|pidgin|gpicview|polkit-kde-authentication-agent-1|xarchiver|kdialog|pavucontrol|engrampa|plasma-discover|filezilla|krunner|galculator|ark|okteta|knotes)",
+    "priority": 5,
+    "object": "n"
+  },
+  {
+    "process": "(yandex_browser|kwin_rules_dialog|atril)",
+    "priority": 6,
+    "object": "n"
+  },
+  {
+    "process": "yandex_browser",
+    "title": "Мессенджер — Яндекс.Браузер",
+    "priority": 1,
+    "object": "p"
+  },
+  {
+    "process": "(systemsettings5|kcmshell5|plasmashell)",
+    "priority": 4,
+    "object": "p"
+  },
+  {
+    "process": "java",
+    "cmd": "/home/user/Programs/[^/]+/jbr/bin/java(.*)",
+    "priority": 1,
+    "object": "w"
+  },
+  {
+    "process": "(chromium|firefox-esr)",
+    "priority": 2,
+    "object": "w"
+  },
+  {
+    "process": "(pluma|qterminal|nemo|telegram-desktop|mousepad|konsole|winbox.exe|qtcreator)",
+    "priority": 3,
+    "object": "w"
+  }
+]
