@@ -15,6 +15,7 @@ if __name__ == '__main__':
     all_data = []
     time_min = time.time()
     time_max = 0
+    time_diff = 3600*4
     print("PARSING")
     for file in sorted(files):
         print(file)
@@ -66,7 +67,7 @@ if __name__ == '__main__':
                     buffer.append(data['data'])
     print("ANALYZE")
     days = []
-    for t in range(int(time_min), int(time_max), 86400):
+    for t in range(int(time_min + time_diff), int(time_max + time_diff) + 86400, 86400):
         dt = datetime.datetime.utcfromtimestamp(t)
         days.append(Day(dt.year, dt.month, dt.day))
     s = Searcher()
