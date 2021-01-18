@@ -9,7 +9,7 @@ class Searcher(object):
         self.count = 0
 
     def check(self, f, filter, data):
-        return f not in filter or filter[f] == data or (filter[f] is not None and re.match(re.compile(filter[f]), data))
+        return f not in filter or filter[f] == data or (filter[f] is not None and data is not None and re.match(re.compile(filter[f]), data))
 
     def search(self, process, cmd, title):
         self.count += 1

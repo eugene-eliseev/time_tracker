@@ -41,7 +41,7 @@ class Tracker(Thread):
                     log(res, time_start, True)
             except Exception as e:
                 print(e)
-            if self.is_active and time.time() - self.last_active > 600:
+            if self.is_active and time.time() - self.last_active > 200:
                 self.is_active = False
                 log('@active', self.last_active, False)
             sl = 1.0 - (time.time() - time_start)

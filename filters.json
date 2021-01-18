@@ -22,9 +22,15 @@
     "object": "p"
   },
   {
-    "process": "(systemsettings5|kcmshell5|plasmashell)",
+    "process": "(systemsettings5|kcmshell5|plasmashell|calligraplan|deepin-terminal|deepin-menu|mate-calc|nvidia-settings|smplayer)",
     "priority": 4,
     "object": "p"
+  },
+  {
+    "process": "java",
+    "cmd": "/usr/lib/jvm/jdk1.8.0_271/bin/java -jar /home/user/Launcher.jar",
+    "priority": 1,
+    "object": "n"
   },
   {
     "process": "java",
@@ -33,7 +39,7 @@
     "object": "w"
   },
   {
-    "process": "(chromium|firefox-esr)",
+    "process": "(chromium|firefox-esr|soffice.bin)",
     "priority": 2,
     "object": "w"
   },
