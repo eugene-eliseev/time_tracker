@@ -1,0 +1,1 @@
+cd /home/user/PycharmProjects/time_tracker && venv/bin/python reporter.py

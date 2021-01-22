@@ -2,13 +2,14 @@ import datetime
 import json
 import os
 import time
+import requests
 
 from statistics.Report import Report
 from statistics.Searcher import Searcher
 from statistics.Day import Day
 
 
-if __name__ == '__main__':
+def main():
     buffer = []
     buffer_last_active = []
     files = os.listdir("logs")
@@ -84,3 +85,15 @@ if __name__ == '__main__':
     for k, v in reports.items():
         with open(k, 'w', encoding='utf8') as f:
             f.write(v.draw())
+
+
+if __name__ == '__main__':
+    try:
+        main()
+        requests.post("http://127.0.0.1:9020/", json={'title': 'Time Tracker', 'text': 'Отчёт переформирован'})
+    except Exception as _:
+        requests.post("http://127.0.0.1:9020/", json={
+            'title': 'Time Tracker',
+            'text': 'Формирование отчёта завершилось с ошибкой!',
+            'timeout': 86400
+        })
