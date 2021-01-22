@@ -102,6 +102,6 @@ def notify(title, text, type='info', timeout=1):
 if __name__ == '__main__':
     try:
         d = main()
-        notify('Time Tracker', f"Отчёт готов. Вчера: {(d['work']/3600):0.1f} ч")
+        notify('Time Tracker', f"Отчёт готов. Вчера: {(d['work']/3600):0.1f} ч", timeout=30)
     except Exception as _:
         notify('Time Tracker', "Формирование отчёта завершилось с ошибкой!", 'error', 86400)
