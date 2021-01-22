@@ -39,8 +39,8 @@ class Tracker(Thread):
                     log(self.last_res, time_start, False)
                     self.last_res = res
                     log(res, time_start, True)
-            except Exception as e:
-                print(e)
+            except Exception as _:
+                pass
             if self.is_active and time.time() - self.last_active > 200:
                 self.is_active = False
                 log('@active', self.last_active, False)
@@ -65,7 +65,11 @@ def get_active_window_title():
     m = re.search(b'^_NET_ACTIVE_WINDOW.* ([\w]+)$', stdout)
     if m != None:
         window_id = m.group(1)
-        window = subprocess.Popen(['xprop', '-id', window_id, 'WM_NAME', '_NET_WM_PID'], stdout=subprocess.PIPE)
+        window = subprocess.Popen(
+            ['xprop', '-id', window_id, 'WM_NAME', '_NET_WM_PID'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
         stdout, stderr = window.communicate()
     else:
         return None
