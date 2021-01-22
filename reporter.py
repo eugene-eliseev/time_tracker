@@ -88,13 +88,20 @@ def main():
     return days[-2].report()
 
 
+def notify(title, text, type='info', timeout=1):
+    try:
+        requests.post(
+            "http://127.0.0.1:9020/",
+            json={'title': title, 'text': text, 'type': type, 'timeout': timeout},
+            timeout=5
+        )
+    except Exception as _:
+        pass
+
+
 if __name__ == '__main__':
     try:
         d = main()
-        requests.post("http://127.0.0.1:9020/", json={'title': 'Time Tracker', 'text': f"Отчёт готов. Вчера: {(d['work']/3600):0.1f} ч"})
+        notify('Time Tracker', f"Отчёт готов. Вчера: {(d['work']/3600):0.1f} ч")
     except Exception as _:
-        requests.post("http://127.0.0.1:9020/", json={
-            'title': 'Time Tracker',
-            'text': 'Формирование отчёта завершилось с ошибкой!',
-            'timeout': 86400
-        })
+        notify('Time Tracker', "Формирование отчёта завершилось с ошибкой!", 'error', 86400)
