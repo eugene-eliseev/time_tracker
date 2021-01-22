@@ -85,12 +85,13 @@ def main():
     for k, v in reports.items():
         with open(k, 'w', encoding='utf8') as f:
             f.write(v.draw())
+    return days[-2].report()
 
 
 if __name__ == '__main__':
     try:
-        main()
-        requests.post("http://127.0.0.1:9020/", json={'title': 'Time Tracker', 'text': 'Отчёт переформирован'})
+        d = main()
+        requests.post("http://127.0.0.1:9020/", json={'title': 'Time Tracker', 'text': f"Отчёт готов. Вчера: {(d['work']/3600):0.1f} ч"})
     except Exception as _:
         requests.post("http://127.0.0.1:9020/", json={
             'title': 'Time Tracker',
