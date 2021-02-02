@@ -67,10 +67,12 @@ class Report(object):
             return ''
         maximum = processes[0][1]
         text = ""
-        for k, v in [(k, v) for k, v in processes if k.startswith('1') or k.startswith('-1')]:
+        for k, v in [(k, v) for k, v in processes]:
             color = 'green'
             if k[0] == '-':
                 color = 'red'
+            if k[0] == '0':
+                color = 'gray'
             text += self.draw_process(int(670 * v / maximum), color, v / 3600, k[k.find('|') + 1:])
         return text
 
