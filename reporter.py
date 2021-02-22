@@ -103,5 +103,6 @@ if __name__ == '__main__':
     try:
         d = main()
         notify('Time Tracker', f"Отчёт готов. Вчера: {(d['work']/3600):0.1f} ч")
-    except Exception as _:
+    except Exception as e:
+        print(e)
         notify('Time Tracker', "Формирование отчёта завершилось с ошибкой!", 'error', 86400)
