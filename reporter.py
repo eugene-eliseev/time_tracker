@@ -21,7 +21,10 @@ def main():
     for file in sorted(files):
         print(file)
         for line in open(os.path.join("logs", file), 'r', encoding='utf8').readlines():
-            data = json.loads(line)
+            try:
+                data = json.loads(line)
+            except Exception as e:
+                continue
             if data['data'] == '@active':
                 data['data'] = [None, None, None]
             elif data['data'] == '@inactive':
