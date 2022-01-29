@@ -1,5 +1,4 @@
 import calendar
-import cgi
 import datetime
 
 
@@ -57,11 +56,11 @@ class Report(object):
             if e < s:
                 continue
             width = int(670 * (e - s) / maximum)
-            text += f"<div style='background:#c8c8c8;padding:5px;margin:5px;width:680px'>{self.get_detail_info(s, e)}<br><div style='width:{width}px;padding:2px;overflow:visible;background:gray;color:white'>{(e - s) / 60:0.1f}&nbsp;M</div><div style='width:680px;height:40px;overflow:hidden'>{cgi.escape(' | '.join([str(d) for d in d[2:]]))}</div></div>"
+            text += f"<div style='background:#c8c8c8;padding:5px;margin:5px;width:680px'>{self.get_detail_info(s, e)}<br><div style='width:{width}px;padding:2px;overflow:visible;background:gray;color:white'>{(e - s) / 60:0.1f}&nbsp;M</div><div style='width:680px;height:40px;overflow:hidden'>{html_special_chars(' | '.join([str(d) for d in d[2:]]))}</div></div>"
         return text
 
     def draw_process(self, width, color, hours, data):
-        return f"<div style='background:#c8c8c8;padding:5px;margin:5px;width:680px'><div style='width:{width}px;padding:2px;overflow:visible;background:{color};color:white'>{hours:0.1f}&nbsp;H</div><div style='width:680px;height:40px;overflow:hidden'>{cgi.escape(data)}</div></div>"
+        return f"<div style='background:#c8c8c8;padding:5px;margin:5px;width:680px'><div style='width:{width}px;padding:2px;overflow:visible;background:{color};color:white'>{hours:0.1f}&nbsp;H</div><div style='width:680px;height:40px;overflow:hidden'>{html_special_chars(data)}</div></div>"
 
     def draw_sorted(self, processes):
         if len(processes) == 0:
@@ -122,3 +121,12 @@ class Report(object):
         text += "<script>function set_day(day){for(i=0;i<=" + num + ";i++){document.getElementById('day'+i).style.display='none';} document.getElementById('day'+day).style.display='block';}</script>"
         text += f"</head><body>{self.draw_calendar(2, 2)}</body></html>"
         return text
+
+
+def html_special_chars(text):
+    return text \
+    .replace(u"&", u"&amp;") \
+    .replace(u'"', u"&quot;") \
+    .replace(u"'", u"&#039;") \
+    .replace(u"<", u"&lt;") \
+    .replace(u">", u"&gt;")

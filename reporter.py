@@ -9,10 +9,13 @@ from statistics.Searcher import Searcher
 from statistics.Day import Day
 
 
+FOLDER = "logs"
+
+
 def main():
     buffer = []
     buffer_last_active = []
-    files = os.listdir("logs")
+    files = os.listdir(FOLDER)
     all_data = []
     time_min = time.time()
     time_max = 0
@@ -20,7 +23,7 @@ def main():
     print("PARSING")
     for file in sorted(files):
         print(file)
-        for line in open(os.path.join("logs", file), 'r', encoding='utf8').readlines():
+        for line in open(os.path.join(FOLDER, file), 'r', encoding='utf8').readlines():
             try:
                 data = json.loads(line)
             except Exception as e:
